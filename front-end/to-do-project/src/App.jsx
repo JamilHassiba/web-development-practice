@@ -1,21 +1,17 @@
+import { useState } from "react";
 import "./App.css";
+import NewItemForm from "./components/NewItemForm";
+import TodoList from "./components/TodoList";
 
 function App() {
+	const [todos, setTodos] = useState([]);
+
 	return (
 		<>
-			<form>
-				<label htmlFor="newItem">New Item</label>
-				<input type="text" id="newItem" />
-				<button type="submit">Add</button>
-			</form>
+			<NewItemForm setTodos={setTodos} />
 			<h1>Todo List</h1>
-			<ul>
-				<li>
-					<input type="checkbox" id="item" />
-					<label htmlFor="item">Item 1</label>
-					<button type="button">Delete</button>
-				</li>
-			</ul>
+			{todos.length === 0 && "No Todos"}
+			<TodoList todos={todos} setTodos={setTodos} />
 		</>
 	);
 }
