@@ -1,7 +1,7 @@
 export default function TodoItem({ todo, onToggle, onDelete }) {
 	return (
-		<li>
-			<label>
+		<li className="todo-item">
+			<label className={todo.checked ? "checked" : ""}>
 				<input
 					type="checkbox"
 					checked={todo.checked}

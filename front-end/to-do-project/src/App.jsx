@@ -37,7 +37,6 @@ function App() {
 		<>
 			<NewItemForm onAdd={addTodo} />
 			<h1>Todo List</h1>
-			{todos.length === 0 && "No Todos"}
 			<TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
 		</>
 	);

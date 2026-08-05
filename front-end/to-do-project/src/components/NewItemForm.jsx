@@ -10,13 +10,14 @@ export default function NewItemForm({ onAdd }) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className="form-container" onSubmit={handleSubmit}>
 			<label htmlFor="newItem">New Item</label>
 			<input
 				value={newItem}
-				onChange={(e) => setNewItem(e.target.value)}
 				type="text"
 				id="newItem"
+				autoComplete="off"
+				onChange={(e) => setNewItem(e.target.value)}
 			/>
 			<button type="submit">Add</button>
 		</form>
