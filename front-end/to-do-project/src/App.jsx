@@ -14,6 +14,7 @@ function App() {
 	}, [todos]);
 
 	function addTodo(title) {
+		if (!title) return;
 		setTodos((currentTodos) => [
 			...currentTodos,
 			{ id: crypto.randomUUID(), title, checked: false },
