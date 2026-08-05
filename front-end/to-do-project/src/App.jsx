@@ -16,8 +16,17 @@ function App() {
 	function addTodo(title) {
 		setTodos((currentTodos) => [
 			...currentTodos,
-			{ id: crypto.randomUUID(), title },
+			{ id: crypto.randomUUID(), title, checked: false },
 		]);
+	}
+
+	function toggleTodo(id) {
+		setTodos((currentTodos) => {
+			return currentTodos.map((todo) => {
+				if (todo.id !== id) return todo;
+				return { ...todo, checked: !todo.checked };
+			});
+		});
 	}
 
 	function deleteTodo(id) {
@@ -29,7 +38,7 @@ function App() {
 			<NewItemForm onAdd={addTodo} />
 			<h1>Todo List</h1>
 			{todos.length === 0 && "No Todos"}
-			<TodoList todos={todos} onDelete={deleteTodo} />
+			<TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
 		</>
 	);
 }
