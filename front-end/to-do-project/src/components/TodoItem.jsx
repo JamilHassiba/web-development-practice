@@ -1,15 +1,11 @@
-export default function TodoItem({ id, title, setTodos }) {
-	function deleteTodo(id) {
-		setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
-	}
-
+export default function TodoItem({ todo, onDelete }) {
 	return (
 		<li>
 			<label>
 				<input type="checkbox" />
-				{title}
+				{todo.title}
 			</label>
-			<button onClick={() => deleteTodo(id)} type="button">
+			<button onClick={() => onDelete(todo.id)} type="button">
 				Delete
 			</button>
 		</li>

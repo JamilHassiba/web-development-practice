@@ -1,16 +1,11 @@
 import { useState } from "react";
 
-export default function NewItemForm({ setTodos }) {
+export default function NewItemForm({ onAdd }) {
 	const [newItem, setNewItem] = useState("");
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		setTodos((currentTodos) => [
-			...currentTodos,
-			{ id: crypto.randomUUID(), title: newItem },
-		]);
-
+		onAdd(newItem);
 		setNewItem("");
 	}
 

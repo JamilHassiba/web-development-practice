@@ -6,12 +6,23 @@ import TodoList from "./components/TodoList";
 function App() {
 	const [todos, setTodos] = useState([]);
 
+	function addTodo(title) {
+		setTodos((currentTodos) => [
+			...currentTodos,
+			{ id: crypto.randomUUID(), title },
+		]);
+	}
+
+	function deleteTodo(id) {
+		setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+	}
+
 	return (
 		<>
-			<NewItemForm setTodos={setTodos} />
+			<NewItemForm onAdd={addTodo} />
 			<h1>Todo List</h1>
 			{todos.length === 0 && "No Todos"}
-			<TodoList todos={todos} setTodos={setTodos} />
+			<TodoList todos={todos} onDelete={deleteTodo} />
 		</>
 	);
 }
