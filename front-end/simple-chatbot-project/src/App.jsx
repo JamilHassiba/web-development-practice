@@ -30,10 +30,15 @@ function App() {
 		});
 	}
 
+	function deleteChatMessages() {
+		setChatMessages([]);
+		localStorage.setItem("messages", []);
+	}
+
 	return (
 		<>
 			<ChatMessages chatMessages={chatMessages} />
-			<ChatInput onAdd={addChatMessage} />
+			<ChatInput onAdd={addChatMessage} onDelete={deleteChatMessages} />
 		</>
 	);
 }

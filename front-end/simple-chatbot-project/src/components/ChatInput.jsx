@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ChatInput({ onAdd }) {
+function ChatInput({ onAdd, onDelete }) {
 	const [inputText, setInputText] = useState("");
 
 	function handleSubmit(e) {
@@ -11,16 +11,21 @@ function ChatInput({ onAdd }) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input
-				value={inputText}
-				type="text"
-				autoComplete="off"
-				placeholder="Write a message..."
-				onChange={(e) => setInputText(e.target.value)}
-			/>
-			<button type="submit">Send</button>
-		</form>
+		<>
+			<form onSubmit={handleSubmit}>
+				<input
+					value={inputText}
+					type="text"
+					autoComplete="off"
+					placeholder="Write a message..."
+					onChange={(e) => setInputText(e.target.value)}
+				/>
+				<button type="submit">Send</button>
+			</form>
+			<button onClick={onDelete} type="button">
+				Clear Chat
+			</button>
+		</>
 	);
 }
 
