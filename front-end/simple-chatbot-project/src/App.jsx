@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import ChatInput from "./components/ChatInput";
+import ChatMessages from "./components/ChatMessages";
 
 function App() {
 	const [chatMessages, setChatMessages] = useState(() => {
@@ -8,10 +9,16 @@ function App() {
 		return data ? JSON.parse(data) : [];
 	});
 
+	function addChatMessage(chatMessage) {
+		setChatMessages((currentChatMessages) => {
+			return [...currentChatMessages, chatMessage];
+		});
+	}
+
 	return (
 		<>
 			<ChatMessages chatMessages={chatMessages} />
-			<ChatInput />
+			<ChatInput onAdd={addChatMessage} />
 		</>
 	);
 }

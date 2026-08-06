@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-function ChatInput() {
+function ChatInput({ onAdd }) {
 	const [inputText, setInputText] = useState("");
 
-	function handleSubmit() {
+	function handleSubmit(e) {
 		e.preventDefault();
-		// TODO: Add a chat message to chat list //
+		if (!inputText) return;
+		onAdd({ id: crypto.randomUUID(), sender: "user", message: inputText });
 		setInputText("");
 	}
 
