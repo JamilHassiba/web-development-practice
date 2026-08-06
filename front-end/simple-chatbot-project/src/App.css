@@ -10,6 +10,30 @@
 
 .messages-container {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-message-container {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 20px;
+}
+
+.chat-message-container[sender="user"] {
+	justify-content: flex-end;
+}
+
+.chat-message-container img {
+	width: 45px;
+}
+
+.chat-message-container div {
+	margin: 0 10px;
+	background-color: rgb(238, 238, 238);
+	padding: 15px 20px;
+	border-radius: 10px;
+	max-width: 300px;
 }
 
 .input-container {
