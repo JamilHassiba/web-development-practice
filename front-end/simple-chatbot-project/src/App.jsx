@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import ChatInput from "./components/ChatInput";
 import ChatMessages from "./components/ChatMessages";
@@ -11,6 +11,16 @@ function App() {
 
 	useEffect(() => {
 		localStorage.setItem("messages", JSON.stringify(chatMessages));
+	}, [chatMessages]);
+
+	const chatMessagesRef = useRef(null);
+
+	useEffect(() => {
+		if (chatMessages.length === 0) return;
+		const messagesContainerElem = chatMessagesRef.current;
+		if (messagesContainerElem) {
+			messagesContainerElem.scrollTop = messagesContainerElem.scrollHeight;
+		}
 	}, [chatMessages]);
 
 	function addChatMessage(chatMessage) {
@@ -37,7 +47,10 @@ function App() {
 
 	return (
 		<div className="app-container">
-			<ChatMessages chatMessages={chatMessages} />
+			<ChatMessages
+				chatMessages={chatMessages}
+				chatMessagesRef={chatMessagesRef}
+			/>
 			<ChatInput onAdd={addChatMessage} onDelete={deleteChatMessages} />
 		</div>
 	);

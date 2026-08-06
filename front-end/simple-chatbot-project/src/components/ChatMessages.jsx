@@ -1,8 +1,8 @@
 import ChatMessage from "./ChatMessage";
 
-function ChatMessages({ chatMessages }) {
+function ChatMessages({ chatMessages, chatMessagesRef }) {
 	return (
-		<div className="messages-container">
+		<div className="messages-container" ref={chatMessagesRef}>
 			{chatMessages.map((chatMessage) => (
 				<ChatMessage key={chatMessage.id} {...chatMessage} />
 			))}
