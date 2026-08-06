@@ -1,7 +1,8 @@
 import "./App.css";
+import ChatInput from "./components/ChatInput";
 
 function App() {
-	return <>Hello</>;
+	return <ChatInput />;
 }
 
 export default App;
