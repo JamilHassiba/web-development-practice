@@ -17,6 +17,17 @@ function App() {
 		setChatMessages((currentChatMessages) => {
 			return [...currentChatMessages, chatMessage];
 		});
+		getRobotResponse(chatMessage.message);
+	}
+
+	function getRobotResponse(inputMessage) {
+		const response = window.Chatbot.getResponse(inputMessage);
+		setChatMessages((currentChatMessages) => {
+			return [
+				...currentChatMessages,
+				{ id: crypto.randomUUID(), sender: "robot", message: response },
+			];
+		});
 	}
 
 	return (
