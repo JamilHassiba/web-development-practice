@@ -1,0 +1,52 @@
+.app-container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
+}
+
+.messages-container {
+	flex: 1;
+}
+
+.input-container {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.input-container form {
+	flex: 1;
+	display: flex;
+}
+
+.input-container input {
+	border: 1px solid black;
+	border-radius: 8px;
+	padding: 12px 15px;
+	font-size: 16px;
+	margin-right: 10px;
+	flex-grow: 1;
+}
+
+.input-container .send-button {
+	border: none;
+	border-radius: 8px;
+	padding: 12px 15px;
+	font-size: 16px;
+	background-color: rgb(25, 135, 84);
+	color: white;
+	margin-right: 10px;
+}
+
+.input-container .clear-button {
+	border: none;
+	border-radius: 8px;
+	padding: 12px 15px;
+	font-size: 16px;
+	background-color: rgb(182, 33, 33);
+	color: white;
+}

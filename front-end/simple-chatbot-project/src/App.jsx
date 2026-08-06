@@ -36,10 +36,10 @@ function App() {
 	}
 
 	return (
-		<>
+		<div className="app-container">
 			<ChatMessages chatMessages={chatMessages} />
 			<ChatInput onAdd={addChatMessage} onDelete={deleteChatMessages} />
-		</>
+		</div>
 	);
 }
 

@@ -11,7 +11,7 @@ function ChatInput({ onAdd, onDelete }) {
 	}
 
 	return (
-		<>
+		<div className="input-container">
 			<form onSubmit={handleSubmit}>
 				<input
 					value={inputText}
@@ -20,12 +20,14 @@ function ChatInput({ onAdd, onDelete }) {
 					placeholder="Write a message..."
 					onChange={(e) => setInputText(e.target.value)}
 				/>
-				<button type="submit">Send</button>
+				<button className="send-button" type="submit">
+					Send
+				</button>
 			</form>
-			<button onClick={onDelete} type="button">
+			<button className="clear-button" onClick={onDelete} type="button">
 				Clear Chat
 			</button>
-		</>
+		</div>
 	);
 }
 
