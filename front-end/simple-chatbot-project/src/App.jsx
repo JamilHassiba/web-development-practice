@@ -1,12 +1,16 @@
+import { useState } from "react";
 import "./App.css";
 import ChatInput from "./components/ChatInput";
-import ChatMessage from "./components/ChatMessage";
 
 function App() {
+	const [chatMessages, setChatMessages] = useState(() => {
+		const data = localStorage.getItem("messages");
+		return data ? JSON.parse(data) : [];
+	});
+
 	return (
 		<>
-			<ChatMessage sender="user" message="Hi" />
-			<ChatMessage sender="robot" message="Hello there! How can I help you?" />
+			<ChatMessages chatMessages={chatMessages} />
 			<ChatInput />
 		</>
 	);
