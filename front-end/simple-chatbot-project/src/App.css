@@ -60,21 +60,12 @@
 	flex-grow: 1;
 }
 
-.input-container .send-button {
-	border: none;
-	border-radius: 8px;
-	padding: 12px 15px;
-	font-size: 16px;
-	background-color: rgb(25, 135, 84);
-	color: white;
+.send-button {
 	margin-right: 10px;
 }
 
-.input-container .clear-button {
-	border: none;
-	border-radius: 8px;
-	padding: 12px 15px;
-	font-size: 16px;
-	background-color: rgb(182, 33, 33);
-	color: white;
+.send-button.unavailable {
+	background-color: rgb(230, 230, 230);
+	color: black;
+	cursor: default;
 }

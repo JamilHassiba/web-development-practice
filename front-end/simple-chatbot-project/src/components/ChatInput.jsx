@@ -30,12 +30,15 @@ function ChatInput({ onAdd, onDelete }) {
 					placeholder="Write a message..."
 					onChange={(e) => setInputText(e.target.value)}
 				/>
-				<button className="send-button" type="submit">
+				<button
+					className={`primary-button send-button ${!inputText || isLoading ? "unavailable" : ""}`}
+					type="submit"
+				>
 					Send
 				</button>
 			</form>
-			<button className="clear-button" onClick={onDelete} type="button">
-				Clear Chat
+			<button className={`secondary-button`} onClick={onDelete} type="button">
+				Clear
 			</button>
 		</div>
 	);
