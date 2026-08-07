@@ -2,12 +2,22 @@ import { useState } from "react";
 
 function ChatInput({ onAdd, onDelete }) {
 	const [inputText, setInputText] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		if (!inputText) return;
-		onAdd({ id: crypto.randomUUID(), sender: "user", message: inputText });
+		if (isLoading) return;
+
+		const currentInput = inputText;
 		setInputText("");
+		setIsLoading(true);
+		await onAdd({
+			id: crypto.randomUUID(),
+			sender: "user",
+			message: currentInput,
+		});
+		setIsLoading(false);
 	}
 
 	return (

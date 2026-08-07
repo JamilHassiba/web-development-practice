@@ -23,18 +23,28 @@ function App() {
 		}
 	}, [chatMessages]);
 
-	function addChatMessage(chatMessage) {
+	async function addChatMessage(chatMessage) {
 		setChatMessages((currentChatMessages) => {
 			return [...currentChatMessages, chatMessage];
 		});
-		getRobotResponse(chatMessage.message);
+		displayLoadingMessage();
+		await getRobotResponse(chatMessage.message);
 	}
 
-	function getRobotResponse(inputMessage) {
-		const response = window.Chatbot.getResponse(inputMessage);
+	function displayLoadingMessage() {
 		setChatMessages((currentChatMessages) => {
 			return [
 				...currentChatMessages,
+				{ id: crypto.randomUUID(), sender: "robot", message: "Loading..." },
+			];
+		});
+	}
+
+	async function getRobotResponse(inputMessage) {
+		const response = await window.Chatbot.getResponseAsync(inputMessage);
+		setChatMessages((currentChatMessages) => {
+			return [
+				...currentChatMessages.slice(0, -1),
 				{ id: crypto.randomUUID(), sender: "robot", message: response },
 			];
 		});
