@@ -17,6 +17,12 @@
 	scrollbar-width: none;
 }
 
+.welcome-message {
+	margin-top: 20px;
+	color: rgb(120, 120, 120);
+	text-align: center;
+}
+
 .chat-message-container {
 	display: flex;
 	align-items: flex-start;

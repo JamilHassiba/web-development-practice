@@ -57,6 +57,12 @@ function App() {
 
 	return (
 		<div className="app-container">
+			{chatMessages.length === 0 && (
+				<div className="welcome-message">
+					Welcome to the chatbot project! Send a message using the textbox
+					below.
+				</div>
+			)}
 			<ChatMessages
 				chatMessages={chatMessages}
 				chatMessagesRef={chatMessagesRef}
