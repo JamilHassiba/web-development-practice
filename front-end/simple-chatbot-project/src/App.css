@@ -80,7 +80,6 @@
 }
 
 .send-button.unavailable {
-	background-color: rgb(230, 230, 230);
-	color: black;
-	cursor: default;
+	background-color: rgb(25, 135, 84);
+	cursor: not-allowed;
 }
