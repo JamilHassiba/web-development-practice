@@ -37,12 +37,18 @@
 	width: 45px;
 }
 
-.chat-message-container div {
+.chat-message-container .text-container {
 	margin: 0 10px;
 	background-color: rgb(238, 238, 238);
 	padding: 15px 20px;
 	border-radius: 10px;
 	max-width: 300px;
+}
+
+.chat-message-container .time {
+	font-size: 12px;
+	color: rgb(120, 120, 120);
+	margin-top: 6px;
 }
 
 .loading-spinner {

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useState } from "react";
 
 function ChatInput({ onAdd, onDelete }) {
@@ -10,6 +11,7 @@ function ChatInput({ onAdd, onDelete }) {
 		if (isLoading) return;
 
 		const currentInput = inputText;
+		const time = dayjs().valueOf();
 		setInputText("");
 		setIsLoading(true);
 		await onAdd({
@@ -17,6 +19,7 @@ function ChatInput({ onAdd, onDelete }) {
 			sender: "user",
 			type: "text",
 			message: currentInput,
+			time: dayjs(time).format("h:mma"),
 		});
 		setIsLoading(false);
 	}
