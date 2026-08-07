@@ -35,7 +35,11 @@ function App() {
 		setChatMessages((currentChatMessages) => {
 			return [
 				...currentChatMessages,
-				{ id: crypto.randomUUID(), sender: "robot", message: "Loading..." },
+				{
+					id: crypto.randomUUID(),
+					sender: "robot",
+					type: "loading",
+				},
 			];
 		});
 	}
@@ -45,7 +49,12 @@ function App() {
 		setChatMessages((currentChatMessages) => {
 			return [
 				...currentChatMessages.slice(0, -1),
-				{ id: crypto.randomUUID(), sender: "robot", message: response },
+				{
+					id: crypto.randomUUID(),
+					sender: "robot",
+					type: "text",
+					message: response,
+				},
 			];
 		});
 	}

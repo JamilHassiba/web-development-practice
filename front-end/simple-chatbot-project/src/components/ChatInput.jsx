@@ -15,6 +15,7 @@ function ChatInput({ onAdd, onDelete }) {
 		await onAdd({
 			id: crypto.randomUUID(),
 			sender: "user",
+			type: "text",
 			message: currentInput,
 		});
 		setIsLoading(false);
