@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS saved_roles;
+DROP TABLE IF EXISTS interviews;
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS companies;
+DROP TABLE IF EXISTS marketing_signups;
+DROP TABLE IF EXISTS newsletter_signups;
+DROP TABLE IF EXISTS alumni_network;
