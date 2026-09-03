@@ -17,3 +17,18 @@ class GenreCreate(BaseModel):
 class GenreOut(BaseModel):
     genre_id: int
     genre: str
+
+class BookCreate(BaseModel):
+    title: str
+    isbn: str
+    genre_id: int
+    price: float
+    author_id: int
+
+class BookOut(BaseModel):
+    book_id: int
+    title: str
+    isbn: str
+    genre_id: int
+    price: float
+    author_id: int
