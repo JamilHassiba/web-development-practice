@@ -97,5 +97,40 @@ def get_book(id: int, conn = Depends(get_db)) -> BookDetail:
 
     if book_detail is None:
         raise HTTPException(status_code=404, detail="Book not found")
-
     return book_detail
+
+@app.put("/books/{id}")
+def put_book(id: int, book: BookUpdate, conn = Depends(get_db)) -> BookOut:
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    query = """
+        UPDATE books
+        SET
+            title = COALESCE(%s, title),
+            isbn = COALESCE(%s, isbn),
+            genre_id = COALESCE(%s, genre_id),
+            price = COALESCE(%s, price),
+            author_id = COALESCE(%s, author_id)
+        WHERE book_id = %s
+        RETURNING *;
+    """
+    data = (book.title, book.isbn, book.genre_id, book.price, book.author_id, id)
+    cursor.execute(query, data)
+    updated_book = cursor.fetchone()
+    conn.commit()
+    cursor.close()
+
+    if updated_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return updated_book
+
+@app.delete("/books/{id}")
+def delete_book(id: int, conn = Depends(get_db)) ->  BookOut:
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    cursor.execute("DELETE FROM books WHERE book_id = %s RETURNING *;", (id,))
+    deleted_book = cursor.fetchone()
+    conn.commit()
+    cursor.close()
+
+    if deleted_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return deleted_book

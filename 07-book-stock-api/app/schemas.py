@@ -40,3 +40,10 @@ class BookDetail(BaseModel):
     price: float
     author_name: str
     genre: str
+
+class BookUpdate(BaseModel):
+    title: str | None = None
+    isbn: str | None = None
+    genre_id: int | None = None
+    price: float | None = None
+    author_id: int | None = None
