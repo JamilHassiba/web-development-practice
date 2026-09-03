@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from psycopg2.extras import RealDictCursor
 from typing import List
-from .schemas import AuthorCreate, AuthorOut
+from .schemas import *
 from .database import get_db
 
 app = FastAPI()
@@ -28,3 +28,26 @@ def post_authors(author: AuthorCreate, conn = Depends(get_db)) -> AuthorOut:
     conn.commit()
     cursor.close()
     return new_author
+
+@app.get("/genres")
+def get_genres(conn = Depends(get_db)) -> List[GenreOut]:
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    cursor.execute("SELECT * FROM genres;")
+    rows = cursor.fetchall()
+    cursor.close()
+    return rows
+
+@app.post("/genres")
+def post_genres(genre: GenreCreate, conn = Depends(get_db)) -> GenreOut:
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    query = """
+        INSERT INTO genres (genre) 
+        VALUES (%s)
+        RETURNING *;
+    """
+    data = (genre.genre,)
+    cursor.execute(query, data)
+    new_genre = cursor.fetchone()
+    conn.commit()
+    cursor.close()
+    return new_genre

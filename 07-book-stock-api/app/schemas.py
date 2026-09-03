@@ -11,3 +11,9 @@ class AuthorOut(BaseModel):
     last_name: str
     country: str | None
 
+class GenreCreate(BaseModel):
+    genre: str
+
+class GenreOut(BaseModel):
+    genre_id: int
+    genre: str
