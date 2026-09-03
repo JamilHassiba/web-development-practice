@@ -32,3 +32,11 @@ class BookOut(BaseModel):
     genre_id: int
     price: float
     author_id: int
+
+class BookDetail(BaseModel):
+    book_id: int
+    title: str
+    isbn: str
+    price: float
+    author_name: str
+    genre: str

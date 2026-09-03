@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from psycopg2.extras import RealDictCursor
 from typing import List
 from .schemas import *
@@ -74,3 +74,28 @@ def post_books(book: BookCreate, conn = Depends(get_db)) -> BookOut:
     conn.commit()
     cursor.close()
     return new_book
+
+@app.get("/books/{id}")
+def get_book(id: int, conn = Depends(get_db)) -> BookDetail:
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    query = """
+        SELECT
+            b.book_id,
+            b.title,
+            b.isbn,
+            b.price,
+            CONCAT(a.first_name, ' ', a.last_name) AS author_name,
+            g.genre
+        FROM books AS b
+        LEFT JOIN genres AS g ON b.genre_id = g.genre_id 
+        LEFT JOIN authors AS a ON b.author_id = a.author_id
+        WHERE b.book_id = %s;
+    """
+    cursor.execute(query, (id,))
+    book_detail = cursor.fetchone()
+    cursor.close()
+
+    if book_detail is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+
+    return book_detail
